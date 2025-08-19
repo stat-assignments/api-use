@@ -1,0 +1,107 @@
+---
+title: "API TILT Information"
+format: html
+---
+
+## Purpose
+
+Data scientists and statisticians must be able to take data that is in its natural, messy form and transform it into tidy data, making and documenting the transformations and considering their impact on inference and interpretation of the data.
+One efficient way to access online data is through application programming interfaces (APIs). 
+In this assignment, you will practice using several different APIs to accomplish different tasks which might come up during work as a data scientist or statistician. 
+
+
+### Skills
+
+This assignment will help you practice the following skills which are important for being able to access and work with APIs:
+
+- Use an API via a URL
+- Make API calls after setting header information 
+- Make API calls using an API key
+- Use best practices to secure API key information
+
+
+### Knowledge
+
+This assignment will help you to become familiar with important knowledge in this discipline:
+
+- How to read API documentation and determine how to extract the required information from the API
+- HTTP response codes and how to interpret them successfully
+- Ethics and manners for web scraping and API use
+
+
+## Success Criteria
+
+### General Criteria
+
+- [ ] Student's name is included at top of assignment
+- [ ] Document compiles on a different machine
+- [ ] Compiled document is formatted well
+- [ ] All code in the document is contained in appropriately formatted code chunks
+- [ ] Compiled document does not include long sections of printed data, making use of `head` and `tail` commands to show only a few rows of data during data cleaning.
+- [ ] Student answers are below the `---` separator and above the next prompt, or in cases where questions are enumerated, student answers are indicated using the quote indicator, `> ` and the placeholder text `Your answer here` has been removed and replaced with the answer. 
+
+### Task specific Criteria
+
+- Overall criteria
+  - [ ] API key is protected and not pushed to GitHub or otherwise exposed.
+
+1. Public API, No Authentication
+  1. HTTP Response Codes
+    - [ ] Table of HTTP response codes scraped
+    - [ ] Table is named correctly
+    - [ ] Table has columns that are named as specified
+  2. Fighting Like Cats and Dogs with APIs
+    1. Saving the response images
+      - [ ] URLs for images created correctly and saved in `url` column
+      - [ ] Folder to save images into created as directed
+      - [ ] Functional programming used to save images to folder
+    2. Introducing `glue` and f-strings
+      - [ ] Formatted string created using glue (R) or f-strings (python) to generate a complete image reference string
+      - [ ] Columns which will be used to fill in the string are indicated
+    3. Creating An Image Wall
+      - [ ] Markdown code for all images created successfully
+      - [ ] YAML header created successfully
+      - [ ] Start string for figure panel created
+      - [ ] End string for figure panel created
+      - [ ] Lines assembled in the correct order with appropriate blank lines
+      - [ ] markdown file written to `http-codes.qmd`
+      - [ ] markdown file compiles
+      - [ ] figure panel works as specified
+      
+2. APIs with Authentication
+  1. Register for Calendarific
+    - [ ] API key stored in .Renviron or .env (but not pushed to the repository)
+    - [ ] `.gitignore` file contains appropriate exclusion
+    - [ ] Code to load the key into the environment is provided (python -- R will load it automatically)
+    - [ ] Screenshot of working directory provided in markdown document (and image added to repo and linked correctly)
+    - [ ] Code included to determine how many characters are present in API key
+    - [ ] Code chunk is set to not evaluate
+    - [ ] Number of characters in key is correct and included statically
+  2. October Holidays
+    - [ ] Query constructed to get all US holidays in October
+    - [ ] Code to run query is correct and works with an API key set up as directed
+    - [ ] Query response saved to `oct_holidays` and written out to a (binary) file (so as not to expose the API key)
+    - [ ] Thoughtful and correct answer to minimize redundant API calls question
+  3. Formatting JSON data
+    - [ ] Response body saved as `oct-holidays.json`
+    - [ ] Holidays formatted in a rectangular table with only states as a nested column; columns are otherwise as described.
+    - [ ] Dates are stored as dates, not characters
+  4. State Holidays
+    - [ ] State specific holidays separated from national holidays
+    - [ ] State specific holidays unnested successfully
+    - [ ] Unnested data are combined back together appropriately to get a dataset which has one row for each entity celebrating the holiday
+  5. Holiday List
+    - [ ] Holidays are appropriately merged, keeping only the national holiday in cases where there are the same national and state holiday on the same date. 
+    - [ ] Table is sorted by date
+    - [ ] Table includes only holidays that are US federal holidays, Nebraska holidays, religious observances, or world statistics day. 
+    - [ ] Code is used to present the results as a markdown formatted table integrated into the document.
+  6. Date Sequences
+    - [ ] `long_holiday(data, "name")` function created as specified to expand holidays that have First Day of X, Last Day of X labels.
+    - [ ] Function is tested and works correctly
+  7. Scheduling an Event
+    - [ ] Date range only includes August - December
+    - [ ] Saturdays and Sundays are excluded
+    - [ ] holidays are excluded
+    - [ ] Plot shows a reasonable representation of a calendar
+    
+    
