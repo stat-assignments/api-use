@@ -1,0 +1,197 @@
+---
+title: "Lab: Application Programming Interfaces"
+author: "Your Name Here"
+format: html
+number-sections: true
+number-depth: 2
+---
+
+::: callout
+You can see the purpose of this assignment as well as the skills and knowledge you should be using and acquiring, in the [Transparency in Learning and Teaching (TILT)](tilt.qmd) document in this repository. The TILT document also contains a checklist for self-reflection that will provide some guidance on how the assignment will be graded. 
+:::
+
+
+# Public API, No Authentication
+
+When working with APIs, you will often need to understand HTTP status codes. 
+Luckily, there are APIs to help make this process more adorable! 
+In this task, you'll review HTTP response codes and practice using very simple APIs that do not require authentication.
+
+## HTTP Response Codes
+
+Scrape the HTTP response descriptions provided at https://www.ibm.com/docs/en/zos-connect/3.0.0?topic=reference-http-response-code into a tabular object `resp_codes` that has columns `code`, `name`, and `description`. 
+
+> Code chunk goes here
+
+## Fighting Like Cats and Dogs with APIs
+
+Often, 404 errors have custom pages that show an image specific to the site (or just more interesting than a text site that says 404 not found).
+There are API services available to provide these images, and using these services to show response codes can make web development and web scraping much cuter.
+
+For this exercise, pick either [dogs](https://http.dog/) or [cats](https://http.cat/). 
+(You can also pick [goats](https://httpgoats.com/), [ducks](https://httpducks.com/), [gardens](https://http.garden/), [fish](https://http.fish), or [pizza](https://http.pizza/), if you prefer.)
+Complete the following tasks to make a reference sheet for each of your HTTP codes.
+
+### Saving the response images
+
+1. Use the `code` column and the API documentation to create a URL for each status code picture. Save the URLs in a `url` column.
+2. Create a folder to save the images into (`cats/`, `dogs/`, `pizza/`, etc. seems reasonable)
+3. Use functional programming to iterate through your `url` column and download the pictures to your folder, saving each image as `XXX.jpg` where `XXX` is the HTTP response code.
+
+### Introducing `glue` and f-strings
+
+- [Python f-string reference](https://realpython.com/python-f-strings/)
+- [`glue` R package reference](https://glue.tidyverse.org/)
+
+As API calls get more complicated, it can be helpful to have a way to specify structured strings without pasting a bunch of stuff together. 
+To practice this, use your language of choice to generate markdown code to display each of the HTTP response code images you downloaded. 
+
+Each image should have: 
+
+- a caption
+- alt-text
+- an image ID
+
+As a reminder, you can accomplish this using the following markdown syntax: 
+
+     ![<caption>](<path-to-image>){#<id> fig-alt="alt-text to explain what the image is"}
+
+Create a formatted string that can be combined with your data to generate a complete image reference string. 
+Indicate which columns in your data will be filled in to each placeholder in the string.
+Make sure to use your *local* image link when generating markdown image code, to reduce the load on the server. 
+
+
+### Creating an Image Wall
+
+Use your strings from the previous problem to generate a quarto file that will display a wall of images by following these steps in order:
+
+1. Generate markdown code for each HTTP response code by filling in the placeholders
+2. Create a YAML header string to provide the information at the top of your quarto document, including a title, author, date, and output format (html or pdf). 
+3. Create a start and end string that will define a [figure panel](https://quarto.org/docs/authoring/figures.html#figure-panels).
+4. Assemble your image codes into a single string, keeping in mind that there must be a blank line between each image for the figure panel syntax to work properly.
+5. Assemble the lines you have created into a coherent vector that will define the lines of a text file (e.g. YAMl, then start, then image codes, then end)
+6. Write the lines out to `http-codes.qmd`.
+7. Compile your http-codes.qmd file and ensure that it works! You can use the `quarto::render()` function if you want to do this within this document.
+
+
+
+<!-- change me to python if you so desire -->
+```{r} 
+# Step 1
+
+# Step 2
+
+# Step 3
+
+# Step 4
+
+# Step 5
+
+# Step 6
+
+# Step 7
+
+```
+
+
+# APIs with Authentication
+
+It can be challenging to schedule events while accommodating the numerous national and religious holidays which occur during the fall and winter months. 
+Many religious holidays are determined on the lunar calendar, which means that they hit on different dates each year. 
+In addition, the Orthodox church uses the Julian calendar for religious holidays instead of thee Gregorian calendar which is more common in the Western world. 
+
+Your task will be to develop a calendar which represents the major religious and national holidays that must be scheduled around. 
+
+## Register for Calendarific
+
+The Calendarific API (https://calendarific.com/api-documentation) allows 500 - 1000 requests per day for free accounts.
+Register for a free account (you can use your GitHub login for simplicity) and acquire your API key. 
+
+Use an environment file (`.Renviron` or `.env`) to store your API key in an environment variable named `CALENDARIFIC_API_KEY`. 
+Add your environment file to the `.gitignore` file in this repository to ensure that you do not accidentally push it to git, exposing your API key to the world.
+Add the `.gitignore` file and push it to the repository. 
+
+Take a screenshot of your working directory to show that you've created your environment file correctly, and include it here.
+
+> Screenshot goes here
+
+
+Also, load your environment variables (restart your R session, load the `python-dotenv` package, etc.) and determine how many characters are in your API key.
+Include the code you used to do this, but set `eval: false` as an [execution option](https://quarto.org/docs/computations/execution-options.html#output-options) for the chunk.
+
+> Chunk goes here
+
+
+
+> There are ... characters in my API key
+
+When this homework is compiled on my machine, I will use my own API key, constructed in the same way, to run your code. If you did not follow the instructions exactly, it will not work. 
+
+
+## October Holidays
+
+Read the API documentation and construct a query that will get all US holidays in October for this calendar year. 
+Run the query in R or Python and store the query response in an `oct_holidays` object.
+Write out the response to a file and commit it to the repository. 
+Wrap your API call in code which will check for the presence of the file and only make an API call if the file does not exist.
+
+Note: An .Rdata file is fine if you're using R. I've included `save-object.py` to write out an object in a binary file in Python. It's important to not write out your request to a plain-text readable format because the request will likely contain your API key, which you want to keep confidential. 
+
+
+
+---
+
+> Code here
+
+---
+
+Why is it important to minimize redundant API calls to the server by saving the request file?
+
+> Your answer
+
+---
+
+## Formatting JSON Data
+
+Acquire the request response body as a JSON file. 
+Save the JSON file to your directory as `oct-holidays.json`. 
+
+Use your data tidying skills to format the data in a rectangular format with minimal nesting (you can allow nesting in the states variables to keep the data in a relatively compact form). 
+Dates should be stored as dates and not characters. 
+
+Hint: When you are finished, your data should have at least the columns `name, description, country_id, country_name, date, type, canonical_url, locations, states`, and of these, only states should be a complex type. 
+
+## State Holidays
+
+Create separate data structures for holidays which are celebrated in all US states, and holidays which are celebrated only in some states. 
+Unnest the states column in each data set before merging them back together (you may want to rename the `states` column in the national holiday dataset to more appropriately match the state dataset). 
+
+> Code
+
+
+## Holiday List
+
+Using this combined dataset, create a properly formatted markdown table of all state, national, or religious holidays which are celebrated either nationally or within Nebraska during October, sorted by date (include only necessary columns - name, date, type). 
+Include only one entry for each holiday -- if something is both a national and local holiday, include only the national version. 
+You should exclude UN observances (other than World Statistics Day!), Sporting events,  and Worldwide observances.
+
+> Code that outputs the markdown table
+
+## Date Sequences
+
+Some holidays occur over a longer period -- for example, the Jewish holiday of Sukkot lasts for about a week. 
+Calenderific includes the first and last days of Sukkot, but does not include the intermediate period.
+Write a function, `long_holiday(data, "name")` that looks for "First Day of <pattern>" and "Last Day of <pattern>" entries in `data$name` and fills in the additional days, labeling all of the days with the holiday name ("<pattern>"). 
+Test your function to ensure that it works for October.
+
+## Scheduling An Event
+
+Suppose you want to schedule an event to occur during the fall semester. 
+You want to be sensitive to religious holidays (you don't have to decide whether a holiday is important enough for someone to miss the event to celebrate, which gets sticky), as well as events like time changes and national/state holidays. 
+In addition, you also want to be sensitive to those who are religious, so you want to avoid holding your event on Saturday or Sunday. 
+()) + 1
+Request all holidays and determine what the safe dates are to hold your event.
+You may hard-code the dates when classes are in session for the semester, or just use the values directly in a filter statement. 
+
+Show the safe days using an appropriate plot. The `calendR` package may be useful, or you can use `lubridate` to get the necessary information to plot the calendar in `ggplot2`.
+
